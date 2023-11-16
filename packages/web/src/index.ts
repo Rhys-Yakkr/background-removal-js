@@ -9,12 +9,12 @@ import { Config, validateConfig } from './schema';
 import * as utils from './utils';
 import { NdArray } from 'ndarray';
 import * as codecs from './codecs';
-import { memoize } from 'lodash';
+import _ from 'lodash';
 import { ensureAbsoluteURI } from './url';
 import { preload as preloadResources } from './resource';
 type ImageSource = ImageData | ArrayBuffer | Uint8Array | Blob | URL | string;
 
-const init = memoize(initInference, (config) => JSON.stringify(config));
+const init = _.memoize(initInference, (config) => JSON.stringify(config));
 
 async function preload(configuration?: Config): Promise<void> {
   const config = validateConfig(configuration);
